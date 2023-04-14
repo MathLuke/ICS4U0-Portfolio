@@ -1,0 +1,127 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+  background-color: #000;
+}
+
+body {
+  width: 100%;
+  margin: 0 auto;
+}
+
+h1, h2, h3 {
+  color: #2a2a2a;
+}
+
+p, li {
+  color: #2a2a2a;
+}
+
+h1 {
+  position:absolute;
+  top:40%;
+  width:100%;
+  margin:auto;
+  font-size: 128px;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 10px black;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+p, li {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+nav {
+  height: 50px;
+  padding: 1%;
+  background-color: #43274e;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+nav ul {
+  padding: 0;
+  list-style-type: none;
+  flex: 2;
+  display: flex;
+}
+
+nav li {
+  display: inline;
+  text-align: center;
+  flex: 1;
+}
+
+nav a {
+  display: inline-block;
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+}
+
+main {
+  display: flex;
+}
+
+header {
+  position:relative;
+  margin:auto;
+  border-width:3px, 3px, 3px, 3px;
+  background-color:#5b326b;
+  border-color: #a9a9a9;
+  width:95%;
+  height:500px;
+}
+
+div.contact-links ul{
+  list-style:none;
+}
+
+div.contact-links li{
+  height:40px;
+  position:relative;
+  background:#5b326b;
+  font-size:20px;
+  color:#fff;
+}
+
+div.contact-links a{
+  position:absolute;
+  top:5px;
+}
+
+div.contact-links a:link {
+  color:#fff;
+}
+
+div.contact-links a:visited {
+  color:#fff;
+}
+
+div.contact-links a:hover {
+  color:#aaa;
+}
+
+.logo-image{
+  height: 30px;
+  width:30px;
+  padding-right:5px;
+  padding-top:5px;
+  padding-bottom:0px;
+}

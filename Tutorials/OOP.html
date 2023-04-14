@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+
+    <title>OOP - Object Oriented Programming</title>
+    <link rel="stylesheet" href="tutorials.css">
+  </head>
+
+  <body>    
+    <nav>
+      <ul>
+        <li><a href="../index.html">About Me</a></li>
+        <li><a href="OOP.html">OOP</a></li>
+        <li><a href="arrays-and-arraylists.html">Arrays and ArrayLists</a></li>
+        <li><a href="recursion.html">Recursion</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <header>
+        <h1>Object Oriented Programming</h1>
+      </header>
+
+      <p>
+        Java is an object oriented programming language, so it uses software objects to solve problems. Software objects, like real-life objects, have an identity, attributes, and behaviours.
+      </p>
+
+      <h2>Understanding Software Objects</h2>
+
+      <p>
+        An object's identity is defined by its location in computer memory. Because a space in memory can only contain a single object, every object created in a program will have a unique space in memory, and thus be distinct from every other object in this respect. Even if another object has the exact same attributes and behaviours as this object, they are still distinct from one another because they occupy unique locations in memory. Thus changes made to one object typically do not affect changes to the other object.
+      </p>
+
+      <p>
+        An object's attributes represent the current state of the object. Much like a real-life door can be open or closed, an object in a Java program that represents the door would contain an attribute to store whether the door is open or closed. The attributes of an object are made up of variables contained within the object, which store values that can represent the state of the object.
+      </p>
+
+      <p>
+        An object's behaviours describe actions that the object can do. So, if a real door can be opened and closed, a Java object that represents the door should have behaviours to model the behaviour of the real-life door. In code, the behaviours of an object are represented by the methods that are contained in the object.
+      </p>
+
+      <h2>Objects in Java</h2>
+
+      <p>
+        In Java, objects are created from classes. A class is a sort of software blueprint that defines a specific type of object. The class indicates the types of attributes and behaviours that are common to all objects made from that class. Note that although this means that all objects will have the same types of attributes and behaviours, they do not have to have the same values for these states.
+      </p>
+
+      <p>
+        For example, if a Book class specifies that all Book objects have a title, author, and page count, that does not necessarily mean that all Book objects will have the same values stored to those variables. For example, one Book object could have 100 pages, while another could have 200 pages. However, the class guarantees that all Book objects will have the "number of pages" variable. See below for an example of an implementation of a Book class in Java code.
+      </p>
+
+      <pre>
+        <code>
+          public class Book {
+            String title;
+            String author;
+            int pages;
+
+            public Book() {
+              title = new String();
+              author = new String();
+              pages = 0;
+            }
+
+            public Book(String t, String a, int p) {
+              title = t;
+              author = a;
+              pages = p;
+            }
+          }
+        </code>
+      </pre>
+
+      <p>
+        All Java classes have constructors, which can be thought of as methods that are called when an object is created from the class. The constructor always has the same name as the class, and does not feature a return type, as the constructor is only called when the object is initialized. Typically the constructor is responsible for initializing all of the variables contained in the class. The constructor may also be overloaded like a method, to allow for the creation of the same type of object through different lists of parameters passed through the constructor. The above book class features 2 constructors. The first constructor has no parameters, and creates a Book object with default values. The second constructor creates Book objects with specific attributes based on the parameters passed to the method.
+      </p>
+
+      <h2>Controlling Access</h2>
+
+      <p>
+        Fields and methods (members) within a class in Java have access modifiers, which control the places in a program from which the field or method may be accessed. The access modifier is found in the declaration of the field, or the header of the method. The public keyword means that the field can be accessed from anywhere in the program, including from outside the class where the field or method is declared. The private keyword means that the field may only be accessed from the same class that the field was declared in.
+      </p>
+
+      <p>
+        It is common practice for all instance variables of a class to be declared as private, and to have public accessor (getter) and mutator (setter) methods for viewing and changing the values of the instance variables. This is done so that the instance variables cannot be modified in undesirable ways by other parts of the program, such as changing a variable to an illegal or null value, which could cause errors in other parts of the program outside of where the variable was actually modified. By keeping instance variables private, the setter method can filter out these illegal values.
+      </p>
+
+      <p>
+        The class declaration itself and the class constructor should both be public, so that the class can be used in other classes. Methods in the class may be public or private based on whether the method needs to be accessed outside the class. Methods that should be called from outside the class should be public, while methods do not need to be called from outside the class should be kept as private. This leads into another key principle of object oriented programming, abstraction, which is discussed more in detail later.
+      </p>
+
+      <p>
+        Here is the Book class from before, updated to include access modifiers, and setter and getter methods to access private data.
+      </p>
+
+      <pre>
+        <code>
+          public class Book {
+            private String title;
+            private String author;
+            private int pages;
+
+            public Book() {
+              title = new String();
+              author = new String();
+              pages = 0;
+            }
+
+            public Book(String t, String a, int p) {
+              title = t;
+              author = a;
+              pages = p;
+            }
+
+            public String getTitle() {return title;}
+
+            public void setTitle(String newTitle) {title = newTitle;}
+
+            public String getAuthor() {return author;}
+
+            public void setAuthor(String newAuthor) {author = newAuthor;}
+
+            public int getPages() {return pages;}
+
+            public void setPages(int newPages) {pages = newPages;}
+          }
+        </code>
+      </pre>
+
+      <h2>Creating and Using Objects</h2>
+
+      <p>
+        Up until this point, no objects have actually been created by the program. Instead, the Book class has defined what a Book object will look like, but it is not until a Book object is created in memory that anything can be done to or with the Book object. In Java, objects are created using the <code>new</code> keyword. The <code>new</code> keyword tells the Java compiler to actually create the object in memory, so up until the <code>new</code> keyword is used, a variable declared as a reference type holds a null value. Alternatively, an object that already exists could be assigned to that variable, in which case the variable becomes an alias to that object.
+      </p>
+
+      <pre>
+        <code>
+          public static void main (String[] args) {
+            Book book; // Declare a book variable of type Book. Currently, this is a null reference.
+            book = new Book(); // Create a new Book object through the new keyword and calling the Book class constructor, and assign it to the book variable.
+
+            book.setTitle("Lord of the Rings");
+            System.out.println(book.getTitle()); // Call public methods of the Book object.
+
+            Book book1 = new Book("Harry Potter", "J K Rowling", 400); // Create a new book object
+            Book book2 = book; // Create a book2 variable that points to the same Book as the book variable.
+          }
+        </code>
+      </pre>
+
+      <h2>Ownership and Inheritance</h2>
+
+      <p>
+        The <code>static</code> keyword is placed before a field or method declaration, and indicates that the field belongs to the class, as opposed to the objects that are created from the class. A static variable's value is shared between all objects made from the class, so changing the value for one class changes the value for all classes. A static method cannot be referenced by the object. Instead, it must be called by referencing the class itself.
+      </p>
+
+      <p>
+        For example, Java's <code>Math</code> class contains a number of <code>static</code> variables and methods. In order to access these fields, a reference to the <code>Math</code> class itself is used. For example, the <code>pow()</code> method in the <code>Math</code> class is called as follows:
+      </p>
+
+      <pre>
+        <code>
+          Math.pow(2, 3);
+        </code>
+      </pre>
+
+      <p>
+        This does not require a <code>Math</code> object to first be created since the <code>pow()</code> method is a <code>static</code> method in the <code>Math</code> class.
+      </p>
+
+      <p>
+        Java classes are also capable of a property called inheritance, whereby one class can "extend" up to 1 other class, inheriting its attributes and behaviours. This means that the subclass shares all of the properties of its parent class, or superclass, but can have additional properties more specific to the subclass. This is done by adding the phrase <code>public class &lt;ClassName&gt; extends &lt;Superclass&gt;</code> to the class declaration.
+      </p>
+
+      <p>
+        Beware, as the subclass does not have access to private attributes or behaviours of the superclass, so setter and getter methods are still necessary in the subclass to access members in the superclass.
+      </p>
+
+      <p>
+        The <code>super</code> keyword can be used as a reference to the superclass, including the constructor if <code>super()</code> is used.
+      </p>
+
+      <p>
+        Interestingly, all classes in Java are subclasses of the Object class, so all Java objects inherit (and are capable of overriding) a few methods from the Object class, including the <code>equals()</code> and <code>toString()</code> methods. 
+      </p>
+    </main>
+  </body>
+</html>
