@@ -1,0 +1,1 @@
+Thank you to MDN for providing the template HTML and CSS code from which this website was built, obtained from https://github.com/mdn/learning-area
