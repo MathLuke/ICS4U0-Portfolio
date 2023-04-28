@@ -137,14 +137,20 @@
       <pre>
         <code>
           public static void main (String[] args) {
-            Book book; // Declare a book variable of type Book. Currently, this is a null reference.
-            book = new Book(); // Create a new Book object through the new keyword and calling the Book class constructor, and assign it to the book variable.
+            Book book; // Declare a book variable of type Book. 
+            // Currently, book is a null reference.
+            book = new Book(); // Create a new Book object through 
+            // the new keyword and calling the Book class 
+            // constructor, and assign it to the book variable.
 
+            // Call public methods of the Book object.
             book.setTitle("Lord of the Rings");
-            System.out.println(book.getTitle()); // Call public methods of the Book object.
+            System.out.println(book.getTitle()); 
 
-            Book book1 = new Book("Harry Potter", "J K Rowling", 400); // Create a new book object
-            Book book2 = book; // Create a book2 variable that points to the same Book as the book variable.
+            // Create a new book object
+            Book book1 = new Book("Harry Potter", "J K Rowling", 400); 
+            // Create a book2 variable that points to the same Book as the book variable.
+            Book book2 = book; 
           }
         </code>
       </pre>
