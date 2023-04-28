@@ -25,6 +25,138 @@
       <p>
         Regular variables in Java are fine for most situations. However, if it becomes necessary to have multiple, similar variables to store multiple instances of the same data, it quickly becomes impractical and messy to create a separate variable for each. The solution? Arrays and ArrayLists.
       </p>
+
+      <h2>
+        Arrays in Java
+      </h2>
+
+      <p>
+        An array is simply a data type in Java that stores multiple other data types (or references to those data types) under a single name. You declare an array in Java by indicating the type of data you want the array to store, followed by a pair of square brackets to indicate that this variable is an array. For example, <code>int[] nums;</code> declares an array called nums that will be used to store int variables.
+      </p>
+
+      <p>
+        To instantiate the array, use the new keyword, followed by the data type of the array, followed by square brackets. Inside the square brackets, you must specify the size of the array, which is an integer value that indicates how many values the array can hold. For example, <code>int[] nums = new int[3];</code> declares and instantiates a new int array, with a size of 3, so it can store a maximum of 3 integer variables at once.
+      </p>
+
+      <p>
+        When you instantiate an array in this way, all of the elements in the array will be initialized to default values in a primitive type array (ints are initialized to 0, doubles to 0.0, booleans to false), and to null in a reference type array (i.e. String arrays). To avoid this, you can explicitly define what elements the array should be initialized with by enclosing the values in curly braces and separating the elements by commas. For instance, <code>int[] nums = {1,2,3};</code> creates a nums array with size 3, but also gives the values of the array some default values.
+      </p>
+
+      <p>
+        To access elements stored in an array, you must reference the array you want to access an element from, and indicate the index of the element within the array inside square brackets. In Java, indexes begin at 0, and end at the length of the array - 1. Trying to access any indexes outside of this range will result in an IndexOutOfBoundsException. For loops are also very useful for accessing elements within arrays, as they can traverse the entire array, accessing each individual element within the array. For example,
+      </p>
+
+      <pre>
+        <code>
+          int[] array = {1, 2, 3, 4, 5};
+          for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+          }
+        </code>
+      </pre>
+
+      <p>Where <code>array.length</code> can be used to retrieve the size of the   array. In Java, the size of an array is fixed the moment the array is created, so an array with a length of 5 will only ever store 5 elements, at indices 0-4. Instead, Lists can be used to add additional elements to an array.
+      </p>
+
+      <h2>ArrayLists in Java</h2>
+
+      <p>
+        ArrayLists function similar to arrays, although at first glance the syntax appears nothing alike. Unlike arrays, ArrayLists may only store reference data types, and cannot store primitive data types. However, this can be circumvented by using wrapper classes in place of primitive types. Wrapper classes function more or less exactly like primitive data types, except that they are a reference type instead of a primitive type. To declare and instantiate an ArrayList, declare a variable as either type List or type ArrayList, followed by the data type the ArrayList should hold enclosed in angle brackets. Instantiate the ArrayList by assigning the variable to a new ArrayList object. It is not necessary to include the size of the array here, since the size of an ArrayList changes as data is added to it. 
+      </p>
+
+      <pre>
+        <code>
+          List&lt;Integer&gt; nums = new Arraylist&lt;&gt;();
+        </code>
+      </pre>
+
+      <p>To add data to the ArrayList, the add() method is used. You can either add the element to the end of the ArrayList by just passing the new element to the add() method, or you can insert it at some index in the array by passing the index before the element in the add() method call. This shifts all data at and to the right of this index one index to the right, and slots the new element in the gap that was created.</p>
+
+      <p>
+        To retrieve elements from the ArrayList, use the get() method. The get() method takes an index as a parameter, and returns the object stored at that index within the ArrayList.
+      </p>
+
+      <p>
+        To update elements from the ArrayList without adding new elements to the ArrayList, the set() method is used. The set() method takes two parameters: the index to be updated, and the new value to be assigned to that index.
+      </p>
+
+      <p>
+        Instead of length, the size of the ArrayList can be found by calling the size() method, which returns the length of the ArrayList.
+      </p>
+
+      <p>
+        Finally, elements can be removed from ArrayLists by using the remove() method, which takes an index as a parameter, and removes the element at that index from the array, moving all data to the right of that index one index to the left. The remove method also returns the element that is removed from the ArrayList. Putting this all together, we can create something like this:
+      </p>
+
+      <pre>
+        <code>
+          List&lt;Integer&gt; nums = new ArrayList&lt;&gt;();
+          for (int i = 0; i < 5; i++) {
+            nums.add(i);
+          }
+          for (int i = 0; i < nums.size(); i++) {
+            System.out.println(nums.get(i));
+          }
+          for (int i = 0; i < nums.size(); i++) {
+            nums.set(i, nums.get(i) + 1);
+          }
+          while (nums.size() > 0) {
+            System.out.println(nums.remove(0));
+          }
+        </code>
+      </pre>
+
+      <h2>
+        Searching Arrays and ArrayLists
+      </h2>
+
+      <p>
+        Sometimes, we do not know whether an array or an ArrayList contains a specific value. In this case, the only way to determine whether the array contains the value is to systematically check whether the value at a specific index of the array is the value we are looking for. The simplest way to do this is to iterate through the array, and check each element in the array against our target. If they are equal, we have found our target. If not, we keep looking. If we reach the end of the array, we know that the array does not contain the value, and can deal with that case accordingly. Consider the method
+      </p>
+
+      <pre>
+        <code>
+          public static int searchFor (Object[] array, Object target) {
+            for (int i = 0; i < array.length(); i++) {
+              if (array[i].equals(target)) {
+                return i;
+              }
+            }
+            return -1;
+          }
+        </code>
+      </pre>
+
+      <p>Which returns the index of the first element that equals the target element, or -1 if the element is not found. Is there a better way to do this? Without knowing anything about the array beforehand, no. However, if we know that the array is sorted in ascending order, we can actually find the target element much faster, by using something called binary search.
+      </p>
+
+      <pre>
+        <code>
+          public static int binarySearch(Object[] array, Object target) {
+            int low = 0;
+            int hight = array.length;
+
+            while (low <= high) {
+              int mid = (low + high) / 2;
+
+              int result = array[mid].compareTo(target);
+
+              if (result < 0) {
+                low = mid + 1;
+              } else if (result > 0) {
+                high = mid - 1;
+              } else {
+                return mid;
+              }
+            }
+            return -1;
+          }
+        </code>
+      </pre>
+
+      <p>
+        Binary search works by looking at the middle value in an array of values. If the value is equal to our target value, then we have found the target value and can return the corresponding index. If the value is greater than the target value, then the target must be located in the first half of the array (or not in the array at all), and if the value is less than the target value, then the target must be located in the second half of the array. Binary search can make these assumptions because the array is sorted, and by repeating this process a few times, the target can be found (or deemed to not be within the array) much faster than a typical linear search.
+      </p>
     </main>
   </body>
 </html>
