@@ -137,14 +137,20 @@
       <pre>
         <code>
           public static void main (String[] args) {
-            Book book; // Declare a book variable of type Book. Currently, this is a null reference.
-            book = new Book(); // Create a new Book object through the new keyword and calling the Book class constructor, and assign it to the book variable.
+            Book book; // Declare a book variable of type Book. 
+            // Currently, book is a null reference.
+            book = new Book(); // Create a new Book object through 
+            // the new keyword and calling the Book class 
+            // constructor, and assign it to the book variable.
 
+            // Call public methods of the Book object.
             book.setTitle("Lord of the Rings");
-            System.out.println(book.getTitle()); // Call public methods of the Book object.
+            System.out.println(book.getTitle()); 
 
-            Book book1 = new Book("Harry Potter", "J K Rowling", 400); // Create a new book object
-            Book book2 = book; // Create a book2 variable that points to the same Book as the book variable.
+            // Create a new book object
+            Book book1 = new Book("Harry Potter", "J K Rowling", 400); 
+            // Create a book2 variable that points to the same Book as the book variable.
+            Book book2 = book; 
           }
         </code>
       </pre>
@@ -183,6 +189,61 @@
 
       <p>
         Interestingly, all classes in Java are subclasses of the Object class, so all Java objects inherit (and are capable of overriding) a few methods from the Object class, including the <code>equals()</code> and <code>toString()</code> methods. 
+      </p>
+
+      <h2>
+        Abstraction
+      </h2>
+
+      <p>
+        Abstraction is one of the core pillars of object oriented programming. It essentially states that a programmer should be able to make use of code provided by someone else without having an intrinsic knowledge of how the code actually works. The programmer is responsible for providing the code with the necessary inputs, and handling the necessary outputs. The programmer is not responsible for knowing how the inputs translate into those outputs. The simplest example of this is the System.out.println() method. As a programmer, I do not have to know how System.out.println() works, only that it takes a value as input, and writes that value to the output console.
+      </p>
+
+      <p>
+        Abstraction essentially creates a contract between two different segments of code in a program. One part of the code promises to take an input witin some parameters, and produce and output based on those inputs. The other part of the program promises to provide those inputs, can choose whether or not to use the output created.
+      </p>
+
+      <p>
+        In code, abstraction is implemented in the form of interfaces and abstract classes. An abstract class is a class that contains one or more abstract methods. A class is considered "abstract" because it cannot be instantiated into an object. Instead, an abstract class contains one or more abstract methods. An abstract method has a method signature, but does not include the implementation of the method. In this way, the name of the method (identity), ownership, access, inputs (parameters), and outputs (return types) are determined by the abstract class. If another class were to implement this abstract class, the subclass would be responsible for providing an implementation of the abstract methods.
+      </p>
+
+      <p>
+        Interfaces are similar to abstract classes, except that interfaces contain only abstract methods, and contain no non-final fields or non-abstract methods. Methods in interfaces are implicitly abstract, so it is not necessary to specify that a method is abstract within an interface. It is also impossible to instantiate an interface. Instead of inheriting an interface, a class can choose to implement the interface, and take on the responsibility of implementing all the methods within the interface. The advantage here is that although a class may only extend a single other class, a class can implement many interfaces, and extend an additional class on top of that.
+      </p>
+
+      <h2>Polymorphism</h2>
+
+      <p>
+        An interesting property that sub and super classes display is polymorphism. From Latin words for "many" and "forms", polymorphism describes how an object can behave as other types of objects, so long as the compiler can guarantee that the object has all of the necessary behaviours to act as the other object. Consider the following code:
+      </p>
+
+      <pre>
+        <code>
+          public class Parent { ... }
+          public class Child extends Parent { ... } 
+
+          Parent parent = new Child();
+        </code>
+      </pre>
+
+      <p>
+        Here, we declare a variable of type Parent, then instantiate it as an object of type Child. Why can we do this? Simply put, because the Child object inherits all the methods from Parent, the compiler can guarantee that the Child function can act as a Parent, so it is legal to assign it to the parent variable. This is an example of upcasting, as the Child object is being cast as a Parent object (i.e. up the inheritance tree). Notice that the same does not work in reverse, since the Child object may have methods that the Parent class does not have.
+      </p>
+
+      <p>
+        Similarly, while the Child object is cast as a Parent, you cannot access any methods that are exclusive to the Child class. If it is necessary to access these methods, then you can downcast the parent variable to a Child object. In order to do this safely, use the <code>instanceof</code> operator to check that parent is actually an instnace of the Child class. This is especially necessary if the Parent class has multiple subclasses.
+      </p>
+
+      <pre>
+        <code>
+          if (parent instanceof Child) {
+            ((Child) parent).&lt;Child method&gt;();
+          }
+        </code>
+      </pre>
+
+      <p>
+        One last thing to note: if, while an object is upcast to another object, we try and call a method that is overridden in the child class, the overridden method will be called, instead of the original method implmented in the parent class.
       </p>
     </main>
   </body>

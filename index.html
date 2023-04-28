@@ -19,6 +19,25 @@
 
     <header>
         <h1>Luke Mathieu</h1>
+        <div class="subtitle-text">
+          <a id="designer-text">Designer. </a><a id="developer-text">Developer. </a><a id="dreamer-text">Dreamer.</a>
+        </div>
+        <script>
+          function unfade(element) {
+          var op = 0.1;  // initial opacity
+          var timer = setInterval(frame, 10);
+            
+          function frame() {
+            if (op >= 1){
+                clearInterval(timer);
+            }
+            element.style.opacity = op;
+            element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+            op += op * 0.1;
+            }
+          }
+          unfade(document.getElementByClass("subtitle-text"));
+        </script>
     </header>
 
 
@@ -34,7 +53,6 @@
             </li>
         </ul>
     </div>
-
 
   </body>
 </html>

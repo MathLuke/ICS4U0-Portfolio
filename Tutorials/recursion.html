@@ -25,6 +25,48 @@
       <p>
         Oftentimes it is much more efficient to break up a complex problem into a series of increasingly simpler ones, solving the simple problems individually, then assemble the solutions back together, thereby finding the solution to the complex problem that we began with. Unsurprisingly, this concept can be applied to programming, where this sort of process is called recursion.
       </p>
+
+      <h2>Basics of Recursion</h2>
+
+      <p>
+        More specifically, recursion in programming is the process of calling a method from within the body of the same method. Initially, this does not appear useful by itself. If you just call the method within itself without any sort of condition surrounding it, the method will just cause an infinite loop the moment it is executed. However, by making use of parameters and return values of the methods, while carefully avoiding infinite loops, we can use recursive methods to solve problems.
+      </p>
+
+      <p>
+        Generally speaking, recursive methods work by peeling layers of complexity off of a problem, until a trivial (base) case is reached, at which point the recursive method can climb back up the stack of method calls, assembling the solution to the complex problem at each step.
+      </p>
+
+      <p>
+        The first step in creating a recursive method is to identify the base case. The base case is the point in our recursive solution where it is no longer necessary to make another recursive call, and a value can be returned. For example, in a recursive method that converts a integer to its binary equivalent, the base case would be reached when the integer parameter is 0 or 1, at which point the method should simply return the value of the integer. At this point, it is no longer necessary to divide the integer any further, so we can say that we have reached the base case.
+      </p>
+
+      <p>
+        In the recursive method, if the base case is not found, then it is necessary to make another recursive call. It is important at this step to simplify the problem in some way so that the recursive method approaches its base case. For example, in the toBinary() method, the next recursive call should be passed the input integer divided by 2. By doing this, the recursive method approaches its base case by dividing the integer by 2 until it is less than 2.
+      </p>
+
+      <p>
+        At each step, it is also important to add some information to the recursive solution. This tends to be very specific to the problem the recursive method wants to solve, so there is no general rule of thumb for this step. For the toBinary() method, we can concatenate the value of the current integer modulo 2 to the solution, thereby adding a single binary digit to the solution. Putting all of this together yields us the following toBinary() method.
+      </p>
+
+      <pre>
+        <code>
+          public static String toBinary(int num) {
+            if (num < 2) {
+              return Integer.toString(num);
+            } else {
+              return toBinary(num / 2) + num % 2;
+            }
+          }
+        </code>
+      </pre>
+
+      <h2>
+        Recursion Versus Iteration
+      </h2>
+
+      <p>
+        In the vast majority of cases where a recursive solution exists, an iterative solution (a solution that uses loops instead of iteration) is also possible. How do we decide which solution to choose? In general, it is far simpler to code a recursive solution to a problem. Recursive methods tend to be short, simple methods that rely on Java's call stack in place of a loop to solve the problem. Iterative methods, on the other hand, use a loop to replace the call stack, and thus have to explicitly define how the loop operates, instead of relying on the call stack to do it for you. In exchange, iterative solutions use less system memory than recursive solution, since Java does not need to keep track of the recursive method calls in an iterative solution. In extreme cases where the recursive method may be called thousands of times, it is possible for the call stack (which has a finite capacity) to completely fill before the base case is reached, in which case a stack overflow occurs, and the program may crash. In contrast, it takes much longer for an iterative solution to fill up system memory, if it even fills system memory at all. Thus, recursive or iterative solutions can be used at will for simple examples with a low recursive depth, whichever is simpler to code at the time. However, as the depth of the recursion increases, it becomes more and more desirable to create an iterative method to replace the recursive method.
+      </p>
     </main>
   </body>
 </html>

@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  font-family:sans-serif;
 }
 
 html {
@@ -23,7 +24,7 @@ p, li {
 
 h1 {
   position:absolute;
-  top:40%;
+  top:30%;
   width:100%;
   margin:auto;
   font-size: 128px;
@@ -82,15 +83,25 @@ main {
 header {
   position:relative;
   margin:auto;
-  border-width:3px, 3px, 3px, 3px;
   background-color:#5b326b;
-  border-color: #a9a9a9;
   width:95%;
   height:500px;
 }
 
+.subtitle-text {
+  position:absolute;
+  width: auto;
+  margin-left:auto;
+  margin-right: auto;
+  top:60%;
+  left:35%;
+  font-size: xx-large;
+  color: #ccc;
+}
+
 div.contact-links ul{
   list-style:none;
+  width:95%;
 }
 
 div.contact-links li{
