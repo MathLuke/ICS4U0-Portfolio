@@ -14,6 +14,8 @@
         <li><a href="OOP.html">OOP</a></li>
         <li><a href="arrays-and-arraylists.html">Arrays and ArrayLists</a></li>
         <li><a href="recursion.html">Recursion</a></li>
+        <li><a href="https://github.com/MathLuke/ICS4U0-2023">ICS Assignments<a></li>
+        <li><a href="../sources.html">Sources</a></li>
       </ul>
     </nav>
 
@@ -157,6 +159,60 @@
       <p>
         Binary search works by looking at the middle value in an array of values. If the value is equal to our target value, then we have found the target value and can return the corresponding index. If the value is greater than the target value, then the target must be located in the first half of the array (or not in the array at all), and if the value is less than the target value, then the target must be located in the second half of the array. Binary search can make these assumptions because the array is sorted, and by repeating this process a few times, the target can be found (or deemed to not be within the array) much faster than a typical linear search.
       </p>
+
+      <h2>
+        Sorting Arrays and ArrayLists
+      </h2>
+
+      <p>
+        Sometimes it is necessary to organize data in an array or an ArrayList, such as when you wish to use a binary search to query data. In this case, it is necessary to use a sorting algorithm to sort all of the values in the array into a sorted order, whether that is least to greatest, or some other metric. There are multiple different types of sorting algorithms, that vary in speed and space requirements. The simplest sorting algorithm to code is selection sort.
+      </p>
+
+      <pre>
+        <code>
+          public static void selectionSort(int arr[])
+          {
+            int n = arr.length;
+            for (int i = 0; i < n-1; i++)
+            {
+                int min_idx = i;
+                for (int j = i+1; j < n; j++)
+                    if (arr[j] < arr[min_idx])
+                        min_idx = j;
+                int temp = arr[min_idx];
+                arr[min_idx] = arr[i];
+                arr[i] = temp;
+            }
+          }
+        </code>
+      </pre>
+
+      <p>
+        Selection sort works very simply by looking for the smallest value in the array, then moving that value to the start of the array, then searching for the next smallest value, and putting that into the second place, and repeating this process until the entire array is sorted.
+      </p>
+
+      <p>
+        Another sorting algorithm that operates in a similar sort of style to selection sort is the insertion sort algorithm. Insertion sort checks whether the current element is smaller than the element immediately to its left, and if it is, swaps the two elements. Insertion sort repeats this process until an element is reached that is smaller than the current element. When the final element has been "inserted" in this way, the array is sorted.
+      </p>
+
+      <pre>
+        <code>
+          void sort(int arr[])
+          {
+            int n = arr.length;
+            for (int i = 1; i < n; ++i) {
+              int key = arr[i];
+              int j = i - 1;
+  
+              while (j >= 0 && arr[j] > key) {
+                  arr[j + 1] = arr[j];
+                  j = j - 1;
+              }
+              arr[j + 1] = key;
+            }
+          }
+        </code>
+      </pre>
     </main>
   </body>
 </html>

@@ -14,6 +14,8 @@
         <li><a href="Tutorials/OOP.html">OOP</a></li>
         <li><a href="Tutorials/arrays-and-arraylists.html">Arrays and ArrayLists</a></li>
         <li><a href="Tutorials/recursion.html">Recursion</a></li>
+        <li><a href="https://github.com/MathLuke/ICS4U0-2023">ICS Assignments</a></li>
+        <li><a href="sources.html">Sources</a></li>
       </ul>
     </nav>
 
@@ -22,22 +24,6 @@
         <div class="subtitle-text">
           <a id="designer-text">Designer. </a><a id="developer-text">Developer. </a><a id="dreamer-text">Dreamer.</a>
         </div>
-        <script>
-          function unfade(element) {
-          var op = 0.1;  // initial opacity
-          var timer = setInterval(frame, 10);
-            
-          function frame() {
-            if (op >= 1){
-                clearInterval(timer);
-            }
-            element.style.opacity = op;
-            element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-            op += op * 0.1;
-            }
-          }
-          unfade(document.getElementByClass("subtitle-text"));
-        </script>
     </header>
 
 
@@ -53,6 +39,17 @@
             </li>
         </ul>
     </div>
+
+    <main>
+      <img src="Portrait.jpg">
+      <div class="Info-text">
+        <h2>Who am I?</h2>
+        <p>
+          My name is Luke Mathieu, and I am a grade 11 student at William Lyon Mackenzie. I am a talented student with a passion for programming. Outside of school, I engage in clubs, competitions, and challenges focused on competitive programming and cybersecurity. Recently, I competed in the Canadian Computing Competition, as well as the PicoCTF competition. I typically code in either Java or Python, although I am also familiar with C. Here, you can find a series of tutorials about Java programming, as well as a link to a Github repository of my work throughout the ICS4U0 course.
+        </p>
+      </div>
+      
+    </main>
 
   </body>
 </html>
