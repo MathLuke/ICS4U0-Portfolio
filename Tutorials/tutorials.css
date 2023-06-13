@@ -36,6 +36,11 @@ p, li, code {
     line-height: 1.5;
 }
 
+.isp-screenshot {
+    position: relative;
+    width: 100%;
+}
+
 nav {
     position:fixed;
     width:100%;
